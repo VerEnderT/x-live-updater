@@ -1,6 +1,7 @@
 # X-Live Updater
+[In Deutsch](#beschreibung-der-app-deutsch) | [In English](#app-description-english)
 
-## Beschreibung der App (Deutsch)
+## Beschreibung der App (Deutsch){#beschreibung-der-app-deutsch}
 
 Die *X-Live Updater* App ist ein benutzerfreundliches Tray-Icon-Programm, das die Systemaktualisierungen für Systempakete und X-Live Apps überwacht. Wenn Updates verfügbar sind, wird eine Benachrichtigung angezeigt, und der Benutzer kann auswählen, welche Updates installiert werden sollen. Die App überprüft automatisch jede halbe Stunde nach Updates und bietet die Möglichkeit, diese manuell zu starten.
 
@@ -16,10 +17,12 @@ Falls die erforderliche Sudoers-Datei für `apt update` nicht vorhanden ist, zei
 echo "ALL ALL=(ALL) NOPASSWD: /usr/bin/apt update" | sudo tee /etc/sudoers.d/99-apt-update-nopasswd
 ```
 
+
 ---
+
 # X-Live Updater
 
-## App Description (English)
+## App Description (English){#app-description-english}
 
 The X-Live Updater app is a user-friendly tray icon program that monitors system updates for system packages and X-Live Apps. When updates are available, a notification is displayed, allowing the user to choose which updates to install. The app automatically checks for updates every half hour and offers the option to trigger the check manually.
 
