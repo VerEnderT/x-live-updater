@@ -1,0 +1,16 @@
+[Desktop Entry]
+Version=0.0.1
+Type=Application
+Name=X-Live Update
+Exec=x-live-update-app
+Icon=x-live-update-app
+Categories=Utility;X-Live;
+Keywords=install;deb;debian;update;x-live;xlive;
+Keywords[de]=installatin;deb;debian;update;x-live;xlive;aktuallisierung
+StartupNotify=true
+X-GNOME-UsesNotifications=true
+GenericName=Update
+GenericName[de]=Aktuallisierung
+Comment= updates for system packages, Flatpaks and X-Live Apps.
+Comment[de]= aktuallisiert Systempakete, Flatpaks und X-Live Apps.
+ 

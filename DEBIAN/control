@@ -1,0 +1,13 @@
+Package: x-live-updater
+Version: 0.0.1
+Depends: python3, python3-pyqt5, python3-requests, python3-dbus, apt
+Maintainer: VerEnderT <chaosz932@gmail.com>
+Architecture: amd64
+Homepage: http://verlinuxt.sytes.net
+Section: utils
+Priority: optional
+Description: Tray icon for update monitoring and management
+ This application runs as a tray icon and monitors updates for system packages
+ and X-Live Apps. It notifies users when updates are available, allowing them to
+ select individual updates to apply. The app integrates seamlessly with apt, 
+ ensuring users can keep their system up to date with minimal effort.
