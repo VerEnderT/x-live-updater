@@ -51,8 +51,12 @@ class UpdateTrayApp(QApplication):
         # Überprüfe Sudoers-Datei beim Start
         self.check_and_notify_sudoers()
         self.timer = QTimer()
-        self.timer.timeout.connect(self.check_for_updates)
+        self.timer.timeout.connect(self.check_for_auto_updates)
         self.timer.start(1800000)
+        self.check_for_updates()
+
+    def check_for_auto_updates(self):
+        print("autoupdate: >>>>>>>>>>>>>>>>>>>")
         self.check_for_updates()
 
     def check_for_updates(self):
@@ -89,7 +93,9 @@ class UpdateTrayApp(QApplication):
     def check_apt_updates(self):
         try:
             # Zuerst sudo apt update ausführen, um die Paketlisten zu aktualisieren
-            subprocess.run(['sudo', 'apt', 'update'], check=False)
+            subprocess.run(['sudo', 'apt', 'update'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=False)
+            print("apt update >>>>>>>>>>>>")
+
 
             # Setze die Umgebungsvariable für englische Ausgabe für apt-get
             env = {'LC_ALL': 'C', **os.environ}

@@ -59,12 +59,17 @@ def compare_versions(installed_version, latest_version):
         return "a"
 
 def update_info(username,repo):
-    repo_info = get_update_info(username,repo)
     installed_version = get_version(repo).replace(" ", "")
-    latest_version = repo_info["version"].replace(" ", "")
-    need_update = compare_versions(installed_version, latest_version)
-    url = repo_info["download_url"].replace(" ", "")
-    return {'version':latest_version,'installed':installed_version,"update":need_update,"url":url}
+    #print(f'installedVersion: >{installed_version}<')
+    if installed_version == "x":
+        return {'version':"x",'installed':"x","update":"x","url":"x"}
+    else:
+        repo_info = get_update_info(username,repo)
+        latest_version = repo_info["version"].replace(" ", "")
+        need_update = compare_versions(installed_version, latest_version)
+        url = repo_info["download_url"].replace(" ", "")
+        #print(f'version:{latest_version},  installed: {installed_version}, update: {need_update}, url: {url}')
+        return {'version':latest_version,'installed':installed_version,"update":need_update,"url":url}
 
 
 def update_check():
@@ -78,8 +83,9 @@ def update_check():
             lines = file.read().decode('utf-8').splitlines()
 
         if lines:
-            repo = lines
-            print(repo)
+            repos = lines
+            print(repos)
+            print("läuft")
     except Exception as e:
         fehler = str(e).split(":")[-1]
         print(f"Fehler: {fehler}")
