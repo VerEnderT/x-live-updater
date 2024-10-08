@@ -80,14 +80,10 @@ class xupdater(QWidget):
         self.background_color()
         self.adjustSize()
         self.show()
-
-
-        self.deb_file = None
-        self.process = None  # QProcess instance
-        
-        
-        
-        self.install_button.setEnabled(True)
+        self.process = None  
+        self.install_button.setEnabled(False)
+        if apt_list or flat_list or xlive_list:
+            self.install_button.setEnabled(True)
         
     def start_install_packages(self):
         self.install_button.setEnabled(False)
@@ -103,30 +99,26 @@ class xupdater(QWidget):
         
         # Prepare the command
         
-        #command = f'apt update && apt install -y /tmp/x-live/debs/*.deb && sudo apt upgrade -y && flatpak update'
         start_command = "apt update"       
         xlive_command = "apt install -y /tmp/x-live/debs/*.deb" 
         apt_command = "apt upgrade -y"
-        flat_command = "flatpak update -y"
         
         command = ""
         #if apt_list or flat_list or xlive_list:
         if self.apt_list or self.xlive_list:
             command = start_command
-        if self.xlive_list: 
-            command = command + " && " + xlive_command
-        if self.apt_list: 
-            command = command + " && " + apt_command
-        if self.flat_list: 
-            if command == "": 
-                command = flat_command
-            else:
-                command = command + " && " + flat_command
+            if self.xlive_list: 
+                command = command + " && " + xlive_command
+            if self.apt_list: 
+                command = command + " && " + apt_command
                 
         print(command)
              
         
-        self.process.start('pkexec', ['sh', '-c', command])
+        if self.apt_list or self.xlive_list:
+            self.process.start('pkexec', ['sh', '-c', command])
+        if self.flat_list: 
+            self.process.start('flatpak', ['update', '-y'])
 
     def read_output(self):
         if self.process:
